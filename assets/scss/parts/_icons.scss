@@ -1,0 +1,10 @@
+.icon {
+  display: flex;
+  align-items: center;
+
+  svg {
+    width: 1rem;
+    height: 1rem;
+    fill: $off-white;
+  }
+}

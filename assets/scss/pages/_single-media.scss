@@ -1,0 +1,32 @@
+.media-info-page {
+  &__backdrop {
+    min-height: 100vh;
+    background-size: cover;
+    box-shadow: inset 2000px 0 0 0 #121212f8;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+}
+.media-info-block {
+  display: flex;
+  padding-top: 6rem;
+  &__image {
+    width: 22rem;
+
+    img {
+      width: 100%;
+      object-fit: cover;
+      border-radius: $border-5;
+    }
+  }
+
+  &__text {
+    max-width: 40rem;
+    padding: 2rem;
+
+    h2 {
+      font-size: 4rem;
+    }
+  }
+}

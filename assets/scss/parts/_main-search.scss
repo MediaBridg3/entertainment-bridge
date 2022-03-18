@@ -1,0 +1,30 @@
+.main-search {
+  height: 10vh;
+
+  &__form {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    input {
+      background-color: darken($dark-1, 5%);
+      color: $off-white;
+      border: none;
+      padding: 1rem 2rem;
+      border-radius: $border-5;
+    }
+
+    button {
+      margin-left: -3rem;
+      background-color: transparent;
+      border: none;
+
+      svg {
+        fill: $off-white;
+        width: 1rem;
+        height: 1rem;
+      }
+    }
+  }
+}

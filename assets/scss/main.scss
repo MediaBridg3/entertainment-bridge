@@ -1,0 +1,49 @@
+@import '~/assets/scss/variables.scss';
+
+html,
+body {
+  background-color: $base;
+  color: $white;
+  p,
+  span,
+  li,
+  a {
+    font-family: 'Hind', sans-serif;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 900;
+  }
+}
+a {
+  color: $white;
+  text-decoration: none;
+  &:hover,
+  &:focus {
+    color: $white;
+  }
+}
+
+p,
+span,
+li,
+a {
+  margin-bottom: 4px;
+}
+
+.secondary-text {
+  color: $off-white;
+}
+
+@import '~/assets/scss/parts/_main-search.scss';
+@import '~/assets/scss/parts/_boxes.scss';
+@import '~/assets/scss/parts/_icons.scss';
+@import '~/assets/scss/parts/_media-search-result-list.scss';
+
+@import '~/assets/scss/pages/_single-media.scss';
+
+@import '~/assets/scss/transitions.scss';
