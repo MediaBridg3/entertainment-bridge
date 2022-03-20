@@ -4,7 +4,6 @@
           <div class="media-info-page">
             <div class="media-info-page__backdrop" :style="`background-image: url(https://image.tmdb.org/t/p/original${mediaPayload.backdrop_path})`">
               <div class="container">
-                <p>Movie id: {{ $route.params.id }} </p>
                 <div class="media-info-block">
                   <div class="media-info-block__image">
                     <img v-if="mediaPayload.poster_path" :src="`https://image.tmdb.org/t/p/original${mediaPayload.poster_path}`" />
@@ -16,6 +15,11 @@
                     <p>{{ mediaPayload.overview ? mediaPayload.overview : '-' }}</p>
 
                     <span>{{ releaseDate(mediaPayload.release_date) }}</span>
+                    <div v-if="mediaPayload.genres">
+                      <span v-for="(genre, index) in mediaPayload.genres" :key="`media-genre-${index}`">
+                        {{ `${genre.name} ` }}
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -31,6 +35,27 @@ export default {
     return {
         mediaPayload: false,
         pending: true,
+        genres: [
+        {id: 28, name: 'Action'},
+        {id: 12, name: 'Adventure'},
+        {id: 16, name: 'Animation'},
+        {id: 35, name: 'Comedy'},
+        {id: 80, name: 'Crime'},
+        {id: 99, name: 'Documentary'},
+        {id: 18, name: 'Drama'},
+        {id: 10751, name: 'Family'},
+        {id: 14, name: 'Fantasy'},
+        {id: 36, name: 'History'},
+        {id: 27, name: 'Horror'},
+        {id: 10402, name: 'Music'},
+        {id: 9648, name: 'Mystery'},
+        {id: 10749, name: 'Romance'},
+        {id: 878, name: 'Science Fiction'},
+        {id: 10770, name: 'TV Movie'},
+        {id: 53, name: 'Thriller'},
+        {id: 10752, name: 'War'},
+        {id: 37, name: 'Western'},
+      ],
     };
   },
   mounted() {
@@ -57,7 +82,18 @@ export default {
         return newDate.getFullYear();
       }
       return '-';
-    }
+    },
+    getGenres(itemsGenres) {
+      let payload = '';
+      itemsGenres.forEach(id => {
+        this.genres.find(genre => {
+          if (genre.id === id) {
+            payload += payload === '' ? genre.name : `, ${genre.name}`;
+          }
+        })
+      });
+      return payload;
+    },
   },
 }
 </script>

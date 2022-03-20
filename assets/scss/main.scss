@@ -39,6 +39,7 @@ a {
   color: $off-white;
 }
 
+@import '~/assets/scss/parts/_header.scss';
 @import '~/assets/scss/parts/_main-search.scss';
 @import '~/assets/scss/parts/_boxes.scss';
 @import '~/assets/scss/parts/_icons.scss';

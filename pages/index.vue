@@ -2,11 +2,17 @@
 <div>
   <div class="main-search">
     <div class="container">
-    <h1>H1</h1>
 
     <form @submit.prevent="mediaSearch" class="main-search__form">
-      <input type="text" v-model="searchTerm" />
-      <button><Icon name="search" /></button>
+      <div>
+        <input type="text" v-model="searchTerm" />
+        <button><Icon name="search" /></button>
+      </div>
+      <div class="search-icons">
+        <Icon name="film" />
+        <Icon name="keyboard" />
+        <Icon name="screen" />
+      </div>
     </form>
 
     </div>
@@ -52,8 +58,8 @@ export default {
   },
   methods: {
     async mediaSearch() {
-      this.pending = true;
       if (this.searchTerm && this.searchTerm.length > 1) {
+        this.pending = true;
         const data = await fetch(`/api/media-search?search=${this.searchTerm}`);
         if (data) {
           const json = await data.json();

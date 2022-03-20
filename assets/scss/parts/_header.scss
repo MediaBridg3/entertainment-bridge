@@ -1,0 +1,13 @@
+.eBridgeHeader-default {
+  background-color: $dark-2;
+  padding: 1rem;
+
+  .menu-row {
+    display: flex;
+    align-items: baseline;
+
+    svg {
+      margin-right: 1rem;
+    }
+  }
+}

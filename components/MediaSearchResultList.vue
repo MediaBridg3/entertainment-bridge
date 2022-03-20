@@ -13,8 +13,9 @@
               <Icon v-else name="film" />
             </div>
             <div class="media-list-item__title">
-              <p>{{ media.title }}</p>
-              <span class="date">{{ releaseDate(media.release_date) }}</span>
+              <span class="d-flex align-items-baseline"><Icon name="film" />{{ media.title }}</span>
+              <p class="date">{{ releaseDate(media.release_date) }}</p>
+              <p v-if="media.genre_ids" class="genre">{{ getGenres(media.genre_ids) }}</p>
             </div>
           </NuxtLink>
         </div>
@@ -36,6 +37,31 @@ export default {
       required: true,
     },
   },
+  data() {
+    return {
+      genres: [
+        {id: 28, name: 'Action'},
+        {id: 12, name: 'Adventure'},
+        {id: 16, name: 'Animation'},
+        {id: 35, name: 'Comedy'},
+        {id: 80, name: 'Crime'},
+        {id: 99, name: 'Documentary'},
+        {id: 18, name: 'Drama'},
+        {id: 10751, name: 'Family'},
+        {id: 14, name: 'Fantasy'},
+        {id: 36, name: 'History'},
+        {id: 27, name: 'Horror'},
+        {id: 10402, name: 'Music'},
+        {id: 9648, name: 'Mystery'},
+        {id: 10749, name: 'Romance'},
+        {id: 878, name: 'Science Fiction'},
+        {id: 10770, name: 'TV Movie'},
+        {id: 53, name: 'Thriller'},
+        {id: 10752, name: 'War'},
+        {id: 37, name: 'Western'},
+      ],
+    };
+  },
   computed: {
     mediaList() {
       if (this.data && this.data.length > 0) {
@@ -52,6 +78,17 @@ export default {
         return newDate.getFullYear();
       }
       return '-';
+    },
+    getGenres(itemsGenres) {
+      let payload = '';
+      itemsGenres.forEach(id => {
+        this.genres.find(genre => {
+          if (genre.id === id) {
+            payload += payload === '' ? genre.name : `, ${genre.name}`;
+          }
+        })
+      });
+      return payload;
     },
   },
 };
