@@ -1,0 +1,3 @@
+"Wishlist", possibility to mark media that you would like others to connect to other media.
+Could be a startpage widget that lists these items so others easily can click
+on them and add connections.
