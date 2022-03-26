@@ -11,4 +11,4 @@ API_KEY=xxxx
 apply for your own key at The movie database
 
 Coming up, games from IGDB 🎮  
-GAME_API_KEY=xxxx, not yet implemented
+not yet implemented 🛠
