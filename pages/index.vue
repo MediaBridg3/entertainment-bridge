@@ -9,9 +9,9 @@
         <button><Icon name="search" /></button>
       </div>
       <div class="search-icons">
-        <Icon name="film" />
+        <Icon name="movie" />
         <Icon name="keyboard" />
-        <Icon name="screen" />
+        <Icon name="tv" />
       </div>
     </form>
 
@@ -60,7 +60,7 @@ export default {
     async mediaSearch() {
       if (this.searchTerm && this.searchTerm.length > 1) {
         this.pending = true;
-        const data = await fetch(`/api/media-search?search=${this.searchTerm}`);
+        const data = await fetch(`/api/multi-search?search=${this.searchTerm}`);
         if (data) {
           const json = await data.json();
           if (json) {

@@ -10,11 +10,19 @@
           >
             <div class="media-list-item__image">
               <img v-if="media.poster_path" :src="`https://image.tmdb.org/t/p/original/${media.poster_path}`" />
-              <Icon v-else name="film" />
+              <template v-else>
+                <Icon v-if="media?.media_type === 'tv'" name="tv" />
+                <Icon v-if="media?.media_type === 'movie'" name="movie" />
+
+              </template>
             </div>
             <div class="media-list-item__title">
-              <span class="d-flex align-items-baseline"><Icon name="film" />{{ media.title }}</span>
-              <p class="date">{{ releaseDate(media.release_date) }}</p>
+              <span class="d-flex align-items-baseline">
+                <Icon v-if="media?.media_type === 'tv'" name="tv" />
+                <Icon v-if="media?.media_type === 'movie'" name="movie" />
+                {{ media.title }}
+              </span>
+              <p class="date">{{ releaseDate(media) }}</p>
               <p v-if="media.genre_ids" class="genre">{{ getGenres(media.genre_ids) }}</p>
             </div>
           </NuxtLink>
@@ -71,11 +79,19 @@ export default {
     },
   },
   methods: {
-    releaseDate(mediaDate) {
-      if (mediaDate) {
-        let parsed = Date.parse(mediaDate);
-        let newDate = new Date(parsed);
-        return newDate.getFullYear();
+    releaseDate(media) {
+      if (media?.media_type === 'movie') {
+        if (media?.release_date) {
+          let parsed = Date.parse(media.release_date);
+          let newDate = new Date(parsed);
+          return newDate.getFullYear();
+        }
+      } else if (media?.media_type === 'tv') {
+        if (media?.first_air_date) {
+          let parsed = Date.parse(media.first_air_date);
+          let newDate = new Date(parsed);
+          return newDate.getFullYear();
+        }
       }
       return '-';
     },
