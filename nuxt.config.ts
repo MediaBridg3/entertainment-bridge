@@ -5,6 +5,8 @@ export default defineNuxtConfig({
   privateRuntimeConfig: {
     eBridgePrivate: {
       API_KEY: process.env.API_KEY,
+      TWITCH_CLIENT_ID: process.env.TWITCH_CLIENT_ID,
+      TWITCH_SECRET: process.env.TWITCH_SECRET,
     }
   },
   meta: {
