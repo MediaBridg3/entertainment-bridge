@@ -5,10 +5,12 @@ import * as url from 'url';
 export default async (req: IncomingMessage, res: ServerResponse) => {
   const queryObject = url.parse(req.url as string, true).query;
   const { token } = queryObject;
-  const { searchTerm } = queryObject;
+  const { id } = queryObject;
 
+  console.log('token', token);
+  console.log('id', id);
   if (token) {
-    const apiBase = `https://api.igdb.com/v4/games/?search=${searchTerm}&fields=*,screenshots.*,cover.*`;
+    const apiBase = `https://api.igdb.com/v4/games/?fields=*&id=${id}`;
     
     let games = await $fetch(apiBase, {
       method: 'POST',
@@ -18,6 +20,8 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
         'Authorization': `Bearer ${token}`,
       },
     });
+
+    console.log(games);
     
     if (games) {
       res.writeHead(200, { 'Content-Type': 'application/json' });

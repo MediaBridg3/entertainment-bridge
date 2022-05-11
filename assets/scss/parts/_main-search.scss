@@ -1,6 +1,6 @@
 .main-search {
   padding: 6rem 0;
-  background-image: url('~/assets/images/cinema.jpg');
+  background-image: url('~/assets/images/mkbhd.png');
   background-repeat: no-repeat;
   background-size: cover;
   box-shadow: inset 2000px 0 0 0 #1212120a;
@@ -17,7 +17,7 @@
 
     input {
       background-color: darken($dark-1, 5%);
-      color: $off-white;
+      color: $white;
       border: none;
       padding: 1rem 2rem;
       border-radius: $border-5;
@@ -49,7 +49,7 @@
 
       svg {
         margin-right: 2rem;
-        fill: $red;
+        fill: $yellow;
       }
     }
   }
