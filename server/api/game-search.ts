@@ -19,12 +19,7 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
         'Accept': 'application/json',
         'Client-ID': config.eBridgePrivate.TWITCH_CLIENT_ID,
         'Authorization': `Bearer ${token}`,
-      }, // cover,name,genres,summary
-      // body: `search name,summary;`,
-      // body: {
-      //   search: searchTerm,
-      //   // fields: 'name',
-      // },
+      },
     });
 
     console.log(games);

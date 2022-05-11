@@ -9,7 +9,7 @@
           </div>
           <div class="search-icons">
             <Icon name="movie" />
-            <Icon name="keyboard" />
+            <Icon name="game" />
             <Icon name="tv" />
           </div>
         </form>
@@ -25,7 +25,6 @@
     </template>
   </div>
 </template>
-
 <script>
 import MediaSearchResultList from '~~/components/MediaSearchResultList.vue';
 import Spinner from '~~/components/skeleton/Spinner.vue';
@@ -42,14 +41,19 @@ export default {
     return {
       searchTerm: '',
       mediaPayload: [],
+      games: [],
       pending: false,
       token: false,
     };
   },
   computed: {
     media() {
-      if (this.mediaPayload && this.mediaPayload.length > 0) {
-        return this.mediaPayload;
+      if (!this.pending) {
+        const media = this.mediaPayload.concat(this.games);
+        media.sort((a, b) => {
+          return b.rating - a.rating;
+        });
+        return media;
       }
       return [];
     },
@@ -61,14 +65,13 @@ export default {
     // timeObject.setSeconds(timeObject.getSeconds() + 10);
     // console.log(timeObject);
     // console.log(timeObject.getTime());
-    // Get Twitch token
-    // const tokenData = await fetch('api/twitch-token');
-    // console.log('tokenData: ', tokenData);
   },
   methods: {
     async mediaSearch() {
       if (this.searchTerm && this.searchTerm.length > 1) {
         this.pending = true;
+        this.games = [];
+        this.mediaPayload = [];
 
         // Get Twitch token
         if (!this.token) {
@@ -91,21 +94,49 @@ export default {
           );
           if (gamesData) {
             const gamesJson = await gamesData.json();
-            if (gamesJson) {
-              console.log('Games: ', gamesJson);
+            if (gamesJson.length) {
+              gamesJson.forEach((game) => {
+                this.games.push({
+                  id: game.slug,
+                  posterPath: game.cover?.url
+                    ? game.cover.url.replace('t_thumb', 't_cover_big')
+                    : false,
+                  mediaType: 'game',
+                  title: game.name,
+                  genreIds: game.genres,
+                  rating: game['total_rating'] ? game['total_rating'] : 0,
+                });
+              });
+              // console.log('Games: ', gamesJson);
             }
           }
         }
 
         // Movie and TV-search
-        // const data = await fetch(`/api/multi-search?search=${this.searchTerm}`);
-        // if (data) {
-        //   const json = await data.json();
-        //   if (json) {
-        //     this.mediaPayload = json.results;
-        //     this.pending = false;
-        //   }
-        // }
+        const data = await fetch(`/api/multi-search?search=${this.searchTerm}`);
+        if (data) {
+          const json = await data.json();
+          if (json.results.length) {
+            console.log('tv/film: ', json.results);
+            json.results.forEach((media) => {
+              this.mediaPayload.push({
+                id: media.id,
+                posterPath: media['poster_path']
+                  ? `https://image.tmdb.org/t/p/original${media['poster_path']}`
+                  : false,
+                mediaType: media['media_type'],
+                title:
+                  media['media_type'] === 'movie' ? media.title : media.name,
+                genreIds: media['genre_ids'],
+                date:
+                  media['media_type'] === 'movie'
+                    ? media['release_date']
+                    : media['first_air_date'],
+                rating: media['vote_average'] ? media['vote_average'] * 10 : 0,
+              });
+            });
+          }
+        }
 
         this.pending = false;
       }
