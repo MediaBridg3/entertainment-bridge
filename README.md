@@ -13,6 +13,6 @@ apply for your own key at The movie database
 
 #### Games from IGDB 🎮
 
-Setup account at twitch to get client-ID and secret
-TWITCH_CLIENT_ID=xxxx
+Setup account at twitch to get client-ID and secret  
+TWITCH_CLIENT_ID=xxxx  
 TWITCH_SECRET=xxxx
