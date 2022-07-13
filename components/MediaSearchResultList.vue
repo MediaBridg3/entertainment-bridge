@@ -6,7 +6,7 @@
           v-for="(media, index) in mediaList"
           :key="`media-result${Number(index)}`"
           class="media-list-item col-lg-3"
-          :to="`/media/${media.id}?type=${media.mediaType}`"
+          :to="`/${path(media)}/${media.id}?type=${media.mediaType}`"
         >
           <div class="media-list-item__image">
             <img v-if="media.posterPath" :src="media.posterPath" />
@@ -52,6 +52,7 @@ export default {
     return {
       genres: [
         { id: 28, name: 'Action' },
+        { id: 10759, name: 'Action & Adventure' },
         { id: 12, name: 'Adventure' },
         { id: 16, name: 'Animation' },
         { id: 35, name: 'Comedy' },
@@ -62,13 +63,20 @@ export default {
         { id: 14, name: 'Fantasy' },
         { id: 36, name: 'History' },
         { id: 27, name: 'Horror' },
+        { id: 10762, name: 'Kids' },
         { id: 10402, name: 'Music' },
         { id: 9648, name: 'Mystery' },
+        { id: 10763, name: 'News' },
+        { id: 10764, name: 'Reality' },
         { id: 10749, name: 'Romance' },
         { id: 878, name: 'Science Fiction' },
+        { id: 10765, name: 'Sci-Fi & Fantasy' },
+        { id: 10766, name: 'Soap' },
+        { id: 10767, name: 'Talk' },
         { id: 10770, name: 'TV Movie' },
         { id: 53, name: 'Thriller' },
         { id: 10752, name: 'War' },
+        { id: 10768, name: 'War & Politics' },
         { id: 37, name: 'Western' },
       ],
       gameGenres: [
@@ -107,6 +115,12 @@ export default {
     },
   },
   methods: {
+    path(media) {
+      if (media.mediaType === 'game') {
+        return 'game';
+      }
+      return 'media';
+    },
     releaseDate(media) {
       if (media.date && media.mediaType !== 'game') {
         let parsed = Date.parse(media.date);

@@ -7,7 +7,10 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
   let data = { data: [{ data: '' }] };
 
   const { search } = queryObject;
-  const apiBase = `https://api.themoviedb.org/3/movie/${search}?api_key=${config.eBridgePrivate.API_KEY}&query=${search}`;
+  const { type } = queryObject;
+
+  // const apiBase = `https://api.themoviedb.org/3/movie/${search}?api_key=${config.eBridgePrivate.API_KEY}&query=${search}`;
+  const apiBase = `https://api.themoviedb.org/3/${type}/${search}?api_key=${config.eBridgePrivate.API_KEY}`;
 
   if (search) {
     data = await $fetch(apiBase);

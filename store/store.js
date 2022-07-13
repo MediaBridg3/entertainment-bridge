@@ -25,8 +25,12 @@ export const store = reactive({
     this.games = value;
   },
   gameIndex(id) {
-    if (id && this.games.length) {
-      return this.games.find((game) => game.id === id);
+    const gamesParsed = JSON.parse(JSON.stringify(this.games));
+    if (id && gamesParsed) {
+      console.log('gamesParsed: ', gamesParsed);
+      console.log('id: ', id);
+      console.log('find: ', gamesParsed.find((game) => game?.['id'] == id));
+      return gamesParsed.find((game) => game?.['id'] == id);
     }
   }
 })

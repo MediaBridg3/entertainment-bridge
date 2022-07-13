@@ -49,6 +49,7 @@ export default {
       store,
       genres: [
         { id: 28, name: 'Action' },
+        { id: 10759, name: 'Action & Adventure' },
         { id: 12, name: 'Adventure' },
         { id: 16, name: 'Animation' },
         { id: 35, name: 'Comedy' },
@@ -59,13 +60,20 @@ export default {
         { id: 14, name: 'Fantasy' },
         { id: 36, name: 'History' },
         { id: 27, name: 'Horror' },
+        { id: 10762, name: 'Kids' },
         { id: 10402, name: 'Music' },
         { id: 9648, name: 'Mystery' },
+        { id: 10763, name: 'News' },
+        { id: 10764, name: 'Reality' },
         { id: 10749, name: 'Romance' },
         { id: 878, name: 'Science Fiction' },
+        { id: 10765, name: 'Sci-Fi & Fantasy' },
+        { id: 10766, name: 'Soap' },
+        { id: 10767, name: 'Talk' },
         { id: 10770, name: 'TV Movie' },
         { id: 53, name: 'Thriller' },
         { id: 10752, name: 'War' },
+        { id: 10768, name: 'War & Politics' },
         { id: 37, name: 'Western' },
       ],
     };
@@ -74,21 +82,18 @@ export default {
     if (this.$route.params.id) {
       if (this.$route.query.type !== 'game') {
         this.mediaSearch(this.$route.params.id);
-      } else if (this.$route.query.type === 'game') {
-        console.log('nu ska vi titta på ett spel');
-        console.log(store.gameIndex(this.$route.params.id));
-        console.log(store.games);
       }
     }
   },
   methods: {
     async mediaSearch(id) {
-      const data = await fetch(`/api/id-search?search=${id}`);
+      const data = await fetch(
+        `/api/id-search?search=${id}&type=${this.$route.query.type}`
+      );
       if (data) {
         const json = await data.json();
         if (json) {
           this.mediaPayload = json;
-          console.log(json);
           this.pending = false;
         }
       }

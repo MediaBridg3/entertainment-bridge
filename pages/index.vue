@@ -2,6 +2,7 @@
   <div>
     <div class="main-search">
       <div class="container">
+        <h1>Hej</h1>
         <form @submit.prevent="mediaSearch" class="main-search__form">
           <div>
             <input type="text" v-model="searchTerm" />
@@ -71,10 +72,12 @@ export default {
   },
   methods: {
     async mediaSearch() {
+      console.log('hej i mediaSearch innan ifen');
       if (this.searchTerm && this.searchTerm.length > 1 && store.twitchToken) {
         this.pending = true;
         this.games = [];
         this.mediaPayload = [];
+        console.log('hej i mediaSearch');
 
         // Games search
         const gamesData = await fetch(
@@ -99,7 +102,7 @@ export default {
                 summary: game.summary,
               });
             });
-            store.setGames(this.games);
+            store.setGames(JSON.parse(JSON.stringify(this.games)));
             console.log('Games: ', gamesJson);
           }
         }
