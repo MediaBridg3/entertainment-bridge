@@ -1,0 +1,21 @@
+.btn {
+  background-color: transparent;
+  border: 2px solid $blue;
+  border-radius: $border-5;
+  display: flex;
+  align-items: center;
+  color: $off-white;
+
+  &:hover {
+    color: $off-white;
+    border-color: $off-white;
+  }
+}
+
+.btn-reset {
+  background-color: transparent;
+  border: none;
+  border-radius: none;
+  display: block;
+  color: $off-white;
+}

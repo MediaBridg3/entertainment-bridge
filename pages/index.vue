@@ -9,9 +9,9 @@
             <button><Icon name="search" /></button>
           </div>
           <div class="search-icons">
-            <Icon name="movie" />
-            <Icon name="game" />
-            <Icon name="tv" />
+            <Icon name="movie" class="icon" />
+            <Icon name="game" class="icon" />
+            <Icon name="tv" class="icon" />
           </div>
         </form>
       </div>
@@ -62,6 +62,7 @@ export default {
     },
   },
   async mounted() {
+    // this.mongotest();
     if (!store.twitchToken) {
       store.getToken();
     } else if (store.twitchToken && store.maxAge) {
@@ -71,6 +72,10 @@ export default {
     }
   },
   methods: {
+    async mongotest() {
+      const test = await fetch('/api/mongo-test');
+      console.log(test);
+    },
     async mediaSearch() {
       console.log('hej i mediaSearch innan ifen');
       if (this.searchTerm && this.searchTerm.length > 1 && store.twitchToken) {

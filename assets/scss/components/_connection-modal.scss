@@ -1,0 +1,104 @@
+.connection-modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: $base-transparent;
+
+  &__modal {
+    position: absolute;
+    width: 100%;
+    background-color: $base;
+    border-radius: $border-5;
+    border: 2px solid $blue;
+    padding: 2rem;
+    min-height: 70vh;
+    
+    @include media-breakpoint-up(lg) {
+      width: 80vw;
+      top: 10vh;
+      left: 50%;
+      transform: translate(-50%, 0);
+    }
+    @include media-breakpoint-up(xl) {
+      width: 50vw;
+      top: 20vh;
+      left: 50%;
+      transform: translate(-50%, 0);
+    }
+
+    .modal-header {
+      display: flex;
+      padding: 0;
+      border: 0;
+      justify-content: flex-end;
+
+      button {
+        @extend .btn-reset;
+        position: absolute;
+        top: 2rem;
+        right: 2rem;
+      }
+    }
+
+    .connection-search-list {
+      .list {
+        position: relative;
+        width: 100%;
+        height: 500px;
+        overflow-y: scroll;
+        padding-bottom: 2rem;
+        display: flex;
+        flex-wrap: wrap;
+
+
+        .connection-list-item {
+          width: 50%;
+          padding: 1rem;
+
+          @include media-breakpoint-up(md) {
+            width: 25%;
+          }
+
+          &__image {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow-x: hidden;
+
+            &::before {
+              content: "";
+              display: block;
+              padding-top: 130%;
+            }
+
+            img {
+              position: absolute;
+              top: 0;
+              left: 0;
+              bottom: 0;
+              right: 0;
+              line-height:100%;
+              height:100%;
+              border-radius: $border-5;
+            }
+            svg {
+              width: 100%;
+              height: 100%;
+            }
+          }
+
+          &__title {
+            margin-top: 1rem;
+
+            svg {
+              margin-right: 1rem;
+            }
+          }
+        }
+      }
+    }
+  }
+}

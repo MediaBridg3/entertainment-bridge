@@ -33,12 +33,12 @@
 }
 
 .half-circle-spinner .circle.circle-1 {
-  border-top-color: $yellow;
+  border-top-color: $blue;
   animation: half-circle-spinner-animation 1s infinite;
 }
 
 .half-circle-spinner .circle.circle-2 {
-  border-bottom-color: $yellow;
+  border-bottom-color: $blue;
   animation: half-circle-spinner-animation 1s infinite alternate;
 }
 

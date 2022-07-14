@@ -1,3 +1,4 @@
+@import "../node_modules/bootstrap/scss/bootstrap";
 @import '~/assets/scss/variables.scss';
 
 html,
@@ -17,7 +18,7 @@ body {
   h5 {
     font-family: 'Heebo', sans-serif;
     font-weight: 900;
-    color: #fff;
+    color: $white;
   }
   h1 {
     font-size: 3rem;
@@ -44,10 +45,13 @@ a {
 }
 
 @import '~/assets/scss/parts/_header.scss';
+@import '~/assets/scss/parts/_button.scss';
 @import '~/assets/scss/parts/_main-search.scss';
 @import '~/assets/scss/parts/_boxes.scss';
 @import '~/assets/scss/parts/_icons.scss';
 @import '~/assets/scss/parts/_media-search-result-list.scss';
+
+@import '~/assets/scss/components/_connection-modal.scss';
 
 @import '~/assets/scss/pages/_single-media.scss';
 

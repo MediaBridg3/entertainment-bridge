@@ -11,16 +11,32 @@
           <div class="media-list-item__image">
             <img v-if="media.posterPath" :src="media.posterPath" />
             <template v-else>
-              <Icon v-if="media?.mediaType === 'tv'" name="tv" />
-              <Icon v-if="media?.mediaType === 'movie'" name="movie" />
-              <Icon v-if="media?.mediaType === 'game'" name="game" />
+              <Icon v-if="media?.mediaType === 'tv'" name="tv" class="icon" />
+              <Icon
+                v-if="media?.mediaType === 'movie'"
+                name="movie"
+                class="icon"
+              />
+              <Icon
+                v-if="media?.mediaType === 'game'"
+                name="game"
+                class="icon"
+              />
             </template>
           </div>
           <div class="media-list-item__title">
             <span class="d-flex align-items-baseline">
-              <Icon v-if="media?.mediaType === 'tv'" name="tv" />
-              <Icon v-if="media?.mediaType === 'movie'" name="movie" />
-              <Icon v-if="media?.mediaType === 'game'" name="game" />
+              <Icon v-if="media?.mediaType === 'tv'" name="tv" class="icon" />
+              <Icon
+                v-if="media?.mediaType === 'movie'"
+                name="movie"
+                class="icon"
+              />
+              <Icon
+                v-if="media?.mediaType === 'game'"
+                name="game"
+                class="icon"
+              />
               {{ media.title }}
             </span>
             <p class="date">{{ releaseDate(media) }}</p>

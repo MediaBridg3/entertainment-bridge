@@ -9,7 +9,7 @@ export const store = reactive({
     this.maxAge = value?.['expires_in'];
   },
   async getToken() {
-    const tokenData = await fetch('api/twitch-token');
+    const tokenData = await fetch('/api/twitch-token');
       if (tokenData) {
         const twitchJson = await tokenData.json();
         if (twitchJson && twitchJson?.['access_token']) {

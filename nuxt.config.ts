@@ -7,14 +7,11 @@ export default defineNuxtConfig({
       API_KEY: process.env.API_KEY,
       TWITCH_CLIENT_ID: process.env.TWITCH_CLIENT_ID,
       TWITCH_SECRET: process.env.TWITCH_SECRET,
+      MONGODB_URI: process.env.MONGODB_URI,
     }
   },
   meta: {
     link: [
-      {
-        rel: 'stylesheet',
-        href: 'https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css',
-      },
       {
         rel: 'preconnect',
         href: 'https://fonts.googleapis.com',
@@ -22,11 +19,6 @@ export default defineNuxtConfig({
       {
         rel: 'stylesheet',
         href: 'https://fonts.googleapis.com/css2?family=Hind:wght@400;500;600&family=Heebo:wght@900&display=swap',
-      },
-    ],
-    script: [
-      {
-        src: 'https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js',
       },
     ],
   },

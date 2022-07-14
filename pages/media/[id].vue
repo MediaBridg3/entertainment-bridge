@@ -16,7 +16,10 @@
               </div>
 
               <div class="media-info-block__text">
-                <h2>{{ mediaPayload.title }}</h2>
+                <h2 class="d-flex">
+                  {{ mediaPayload.title }}
+                  <Icon :name="type" class="icon-auto ms-4" />
+                </h2>
 
                 <p>{{ mediaPayload.overview ? mediaPayload.overview : '-' }}</p>
 
@@ -31,6 +34,15 @@
                 </div>
               </div>
             </div>
+            <div class="box mt-3">
+              <button class="btn" @click="displayModal = true">
+                Add connection <Icon name="add" class="ms-3 icon" />
+              </button>
+              <MakeAConnectionModal
+                v-if="displayModal"
+                @close-modal="displayModal = false"
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -40,13 +52,20 @@
 
 <script>
 import { store } from '~~/store/store.js';
+import Icon from '~~/components/Icon.vue';
+import MakeAConnectionModal from '~~/components/connections/MakeAConnectionModal.vue';
 
 export default {
+  components: {
+    Icon,
+    MakeAConnectionModal,
+  },
   data() {
     return {
       mediaPayload: false,
       pending: true,
       store,
+      displayModal: false,
       genres: [
         { id: 28, name: 'Action' },
         { id: 10759, name: 'Action & Adventure' },
@@ -85,7 +104,15 @@ export default {
       }
     }
   },
+  computed: {
+    type() {
+      return this.$route.query.type;
+    },
+  },
   methods: {
+    closeModal() {
+      this.displayModal = false;
+    },
     async mediaSearch(id) {
       const data = await fetch(
         `/api/id-search?search=${id}&type=${this.$route.query.type}`

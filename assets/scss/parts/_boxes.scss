@@ -9,3 +9,14 @@
   min-height: 5rem;
   // importera och sätt smalare font-weight
 }
+
+.box {
+  background-color: $base;
+  border: 2px solid $dark-2;
+  padding: 2rem;
+  border-radius: $border-5;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
